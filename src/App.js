@@ -13,14 +13,14 @@ const cinema = {
     {
       title: "Captain America: Brave New World",
       imageUrl: "https://assets-in.bmscdn.com/discovery-catalog/events/tr:w-400,h-600,bg-CCCCCC:w-400.0,h-660.0,cm-pad_resize,bg-000000,fo-top:l-image,i-discovery-catalog@@icons@@star-icon-202203010609.png,lx-24,ly-615,w-29,l-end:l-text,ie-Ny4xLzEwICAyLjRLIFZvdGVz,fs-29,co-FFFFFF,ly-612,lx-70,pa-8_0_0_0,l-end/et00399765-lxpecsqysh-portrait.jpg",
-      shows: ["8AM", "12AM", "4PM", "5PM", "8PM", "10PM", "12PM"],
-      seats: [20, 10, 9, 22, 44, 13, 4]
+      shows: ["8AM", "4PM"],
+      seats: [20, 10]
     },
     {
       title: "Raja Saab",
       imageUrl: "https://assets-in.bmscdn.com/discovery-catalog/events/tr:w-400,h-600,bg-CCCCCC:w-400.0,h-660.0,cm-pad_resize,bg-000000,fo-top:l-text,ie-MTAsIEFwciAyMDI1,fs-29,co-FFFFFF,ly-612,lx-24,pa-8_0_0_0,l-end/et00383697-ylkctsgxqw-portrait.jpg",
-      shows: ["11AM", "4PM", "6PM", "8PM", "10PM"],
-      seats: [6, 16, 26, 16, 6]
+      shows: ["6PM",  "10PM"],
+      seats: [6, 16]
     },
     {
       title: "Hari Hara Veeramallu",
@@ -37,8 +37,8 @@ const cinema = {
     {
       title: "Thandel",
       imageUrl: "https://assets-in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/thandel-et00384012-1705486794.jpg",
-      shows: ["8AM", "12AM", "4PM", "5PM", "8PM", "10PM", "12PM"],
-      seats: [20, 10, 9, 22, 44, 13, 4]
+      shows: ["8AM", "12AM"],
+      seats: [20, 10]
     },
     {
       title: "Interstellar",
@@ -60,10 +60,10 @@ function App() {
     <div className="container">
       <div className="row">
         <nav class="col-12 navbar navbar-light bg-white">
-        <img src='https://www.myhoardings.com/ads/wp-content/uploads/2024/06/bookmyshow-logo-vector.png' alt="logo" className="logo" />
+          <img src='https://www.myhoardings.com/ads/wp-content/uploads/2024/06/bookmyshow-logo-vector.png' alt="logo" className="logo" />
           <form class="form-inline">
             <input class="form-control mr-sm-2" type="search" placeholder="Search movies" aria-label="Search" />
-              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
           </form>
         </nav>
         <h1 className='col-12 mb-5'>Now Showing</h1>
@@ -71,12 +71,14 @@ function App() {
 
         {cinema.movies.map((eachObj, index) => (
           <div className='col-3'>
-            <div className="card movie-card shadow p-1" key={index}>
+            <div className="card movie-card shadow p-1 mb-3" key={index}>
               <img src={eachObj.imageUrl} alt="movie" className="movie-image" />
-              <h2>{eachObj.title}</h2>
-              <div>
+              <div className='movie-lie-container p-2'>
+                <h2 className='movie-title'>{eachObj.title}<span className='ml-3'><button className='btn btn-warning '>Like</button></span></h2>
+              </div>
+              <div className='w-100'>
                 {eachObj.shows.map((eachTime, i) => (
-                  <button className='btn btn-primary custom-button m-1' key={i}>{eachTime} <br /> ({eachObj.seats[i]}-seates left)</button>
+                  <button className='btn btn-primary custom-button m-1' key={i}>Book seat-{eachTime} <br /> ({eachObj.seats[i]}-seates left)</button>
                 ))}
               </div>
             </div>
